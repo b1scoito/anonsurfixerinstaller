@@ -13,40 +13,74 @@ echo
 echo
 echo
 echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo -e "\033[01;32m Type your passwd here:"
+echo
 sudo apt-get purge tor -y
+clear
 sudo apt-get install tor -y
-echo -e "\033[01;31m Tor Installed"
-sleep 4
-sudo apt-get install anonsurf
+clear
+sudo apt-get install anonsurf -y
+clear
 sudo apt-get install nscd -y && sudo apt-get install resolvconf -y && sudo apt-get install dnsmasq -y
-echo -e "\033[01;30m AnonSurf Installed"
-sleep 4
+clear
 sudo apt-get -f -y
+clear
 sudo apt-get upgrade -y && sudo apt-get upgrade -y
-echo -e "\033[01;34m Programs fixed"
-sleep 4
+clear
 sudo update-rc.d -f tor remove
+clear
 sudo pkill -x tor
-echo -e "\033[01;34m Deleted all tor processes"
-sleep 4
+clear
 sudo /usr/sbin/tor
-echo -e "\033[01;35m Restarted the processes, tor activated."
-sleep 4
+clear
 sudo anonsurf start
-echo -e "\033[01;36m AnonSurf Activated!"
-sleep 4
 sudo anonsurf myip
+echo -e "\033[01;36m AnonSurf Activated!"
+sleep 3
 echo -e "\033[01;37m AnonSurf Fixed"
+sleep 3
+echo 'Checking . . .'
+sleep 5
+echo -e "\033[01;31m Tor -- > Installed"
+sleep 6
+echo -e "\033[01;30m AnonSurf -- > Installed"
+sleep 6
+echo -e "\033[01;34m Nscd -- > Installed"
+sleep 6
+echo -e "\033[01;34m Resolvconf -- > Installed"
+sleep 6
+echo -e "\033[01;39m Dnsmasq -- > Installed"
 sleep 4
-echo -ne "\033[01;38m You want to stop anonsurf now? (y/n):" && read resposta
+echo -e "\033[01;39m All the work has done, now go dance with ANONYMOUS!"
+sleep 4
+echo -ne "\033[01;39m You want to stop anonsurf now? (y/n):" && read resposta
 echo
 echo
 if [ $resposta == "y" ]
 then
-	sudo anonsurf stop && echo "Thanks For Using, Bae!"
+	sudo anonsurf stop && echo "Thanks For Using, Bae."
 elif [ $resposta == "n" ]
 then
-	echo "Closing, keep anonymous!, Bae!"
+	echo "Closing, keep anonymous!, To deactivate type sudo anon stop in your terminal! Bae!"
         exit 0
 elif [ $resposta != "y" ]
 then
