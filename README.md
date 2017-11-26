@@ -1,2 +1,2 @@
 # AnonSurFFixer
-This is gonna fix your anon surf problems!
+This is gonna fix your anon surf problems
