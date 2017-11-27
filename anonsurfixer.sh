@@ -49,8 +49,8 @@ clear
 #Install Tor
 sudo apt-get install tor -y
 clear
-#Install AnonSurf
-sudo apt-get install anonsurf -y && sudo apt-get install nload -y
+#Install AnonSurf, Nload, tor-geoipdb
+sudo apt-get install anonsurf -y && sudo apt-get install nload -y && sudo apt-get install tor-geoipdb
 clear
 #Install Nscd, Resolvconf, Dnsmasq
 sudo apt-get install nscd -y && sudo apt-get install resolvconf -y && sudo apt-get install dnsmasq -y
