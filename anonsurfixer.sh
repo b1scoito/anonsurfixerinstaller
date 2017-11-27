@@ -50,7 +50,7 @@ clear
 sudo apt-get install tor -y
 clear
 #Install AnonSurf
-sudo apt-get install anonsurf -y
+sudo apt-get install anonsurf -y && sudo apt-get install nload -y
 clear
 #Install Nscd, Resolvconf, Dnsmasq
 sudo apt-get install nscd -y && sudo apt-get install resolvconf -y && sudo apt-get install dnsmasq -y
@@ -100,22 +100,14 @@ echo "Checking Complete!"
 sleep 2
 echo -e "${Purple}All the work has done, now go dance with ANONYMOUS!"
 sleep 4
-echo -ne "${White}You want to stop anonsurf now? (y/n):" && read resposta
-echo
-echo
-if [ $resposta == "y" ]
-then
-	sudo anonsurf stop && echo "Thanks For Using, Bae."
-elif [ $resposta == "n" ]
-then
-	echo "Closing, keep anonymous!, To deactivate type sudo anon stop in your terminal! Bae!"
-        exit 0
-elif [ $resposta != "y" ]
-then
-	exit 0
-elif [ $resposta != "n" ]
-then
-	exit 0
-fi
+read -r -p "Do you want to stop AnonSurf? [dstat/y] " response
+case "$response" in
+    [yY][eE][sS]|[yY]) 
+        sudo anonsurf stop && echo "Thanks For Using, Bae."
+        ;;
+    *)
+        sudo nload
+        ;;
+esac
 
 echo ".----------------------------------------------."
