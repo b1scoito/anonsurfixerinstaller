@@ -87,7 +87,7 @@ echo "Checamento completo!"
 echo -e ${Cyan}
 sudo apt-get -f -y > /dev/null
 #Install Upgrades, Updates
-sudo apt-get upgrade -y > /dev/null && sudo apt-get install upgrade -y > /dev/null
+sudo apt-get upgrade -y > /dev/null && sudo apt-get upgrade -y > /dev/null
 #Remove tor dirs
 sudo update-rc.d -f tor remove
 #Kill the tor process
