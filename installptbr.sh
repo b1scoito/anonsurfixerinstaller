@@ -35,7 +35,7 @@ sleep 0.4
 echo -e "${Red}AnonSurf Consertador & Instalador - By: Biscoitao"
 sleep 3.5
 echo
-sleep 10 &
+sleep 3 &
 PID=$!
 i=1
 sp="/-\|"
@@ -50,56 +50,46 @@ if [ -e $tor ]
 then
     echo -e "${Red}Tor -- > Instalado"
 else
-    echo -e "${Red}Tor -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install tor -y && sudo apt-get install tor-geoipdb -y
+    echo -e "${Red}Tor -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install tor -y > /dev/null && sudo apt-get install tor-geoipdb -y > /dev/null
 fi
-sleep 6
 if [ -e $anonsurf ]
 then
     echo -e "${Red}AnonSurf -- > Instalado"
 else
-    echo -e "${Red}AnonSurf -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install anonsurf -y
+    echo -e "${Red}AnonSurf -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install anonsurf -y > /dev/null
 fi
-sleep 6
 if [ -e $nscd ]
 then
     echo -e "${Red}Nscd -- > Instalado"
 else
-    echo -e "${Red}Nscd -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install nscd -y
+    echo -e "${Red}Nscd -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install nscd -y > /dev/null
 fi
-sleep 6
 if [ -e $resolvconf ]
 then
     echo -e "${Red}Resolvconf -- > Instalado"
 else
-    echo -e "${Red}Resolvconf -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install resolvconf -y
+    echo -e "${Red}Resolvconf -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install resolvconf -y > /dev/null
 fi
-sleep 6
 if [ -e $dnsmasq ]
 then
     echo -e "${Red}Dnsmasq -- > Instalado"
 else
-    echo -e "${Red}Dnsmasq -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install dnsmasq -y
+    echo -e "${Red}Dnsmasq -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install dnsmasq -y > /dev/null
 fi
-sleep 6
 if [ -e $nload ]
 then
     echo -e "${Red}Nload -- > Instalado"
 else
-    echo -e "${Red}Nload -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install nload -y
+    echo -e "${Red}Nload -- > Não achei, estarei fazendo o download para você!" && sudo apt-get install nload -y > /dev/null
 fi
 echo "Checamento completo!"
-clear
-sleep 6
 #Fix Problems
 echo -e ${Cyan}
-sudo apt-get -f -y
-clear
+sudo apt-get -f -y > /dev/null
 #Install Upgrades, Updates
-sudo apt-get upgrade -y && sudo apt-get upgrade -y
-clear
+sudo apt-get upgrade -y > /dev/null && sudo apt-get install upgrade -y > /dev/null
 #Remove tor dirs
 sudo update-rc.d -f tor remove
-clear
 #Kill the tor process
 sudo pkill -x tor
 #Execute Tor
@@ -108,19 +98,16 @@ sudo /usr/sbin/tor
 sudo anonsurf start
 sudo anonsurf myip
 echo -e "${Cyan}AnonSurf Ativado!"
-sleep 1
 echo -e "${Cyan}AnonSurf Consertado!"
-sleep 2.1
 echo -e "${Purple}Todo trabalho foi feito, agora vamos dançar com o anonymous!"
-sleep 3.2
-read -r -p "Você deseja parar o anonsurf agora? [dstat/y] " response
-case "$response" in
-    [yY][eE][sS]|[yY]) 
-        sudo anonsurf stop && echo -e "${Purple}Obrigado por usar, adeus."
-        ;;
-    *)
-        sudo nload
-        ;;
-esac
+sleep 1
+echo "Do you want to stop AnonSurf? [dstat/y]"
+read RESPOSTA
+if [ $RESPOSTA == "dstat" ];then
+    sudo nload
+fi
+if [ $RESPOSTA == "y" ];then
+    echo -e "${Red}Bae!" && sudo anonsurf stop
+fi
 
 echo -e "${Purple}.----------------------------------------------."
