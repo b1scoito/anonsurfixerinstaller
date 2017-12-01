@@ -33,9 +33,8 @@ sleep 0.4
 echo -e "${Red}---------------------------------------------------------"
 sleep 0.4
 echo -e "${Red}AnonSurf Fixer & Installer - By: Biscoitao"
-sleep 3.5
 echo
-sleep 10 &
+sleep 3 &
 PID=$!
 i=1
 sp="/-\|"
@@ -50,56 +49,52 @@ if [ -e $tor ]
 then
     echo -e "${Red}Tor -- > Installed"
 else
-    echo -e "${Red}Tor -- > Not Found, installing to you" && sudo apt-get install tor -y && sudo apt-get install tor-geoipdb -y
+    echo -e "${Red}Tor -- > Not Found, installing to you" && sudo apt-get install tor -y > /dev/null && sudo apt-get install tor-geoipdb -y > /dev/null
 fi
-sleep 6
+sleep 1
 if [ -e $anonsurf ]
 then
     echo -e "${Red}AnonSurf -- > Installed"
 else
-    echo -e "${Red}AnonSurf -- > Not found, installing to you" && sudo apt-get install anonsurf -y
+    echo -e "${Red}AnonSurf -- > Not found, installing to you" && sudo apt-get install anonsurf -y > /dev/null
 fi
-sleep 6
+sleep 1
 if [ -e $nscd ]
 then
     echo -e "${Red}Nscd -- > Installed"
 else
-    echo -e "${Red}Nscd -- > Not found, installing to you" && sudo apt-get install nscd -y
+    echo -e "${Red}Nscd -- > Not found, installing to you" && sudo apt-get install nscd -y > /dev/null
 fi
-sleep 6
+sleep 1
 if [ -e $resolvconf ]
 then
     echo -e "${Red}Resolvconf -- > Installed"
 else
-    echo -e "${Red}Resolvconf -- > Not found, installing to you" && sudo apt-get install resolvconf -y
+    echo -e "${Red}Resolvconf -- > Not found, installing to you" && sudo apt-get install resolvconf -y > /dev/null
 fi
-sleep 6
+sleep 1
 if [ -e $dnsmasq ]
 then
     echo -e "${Red}Dnsmasq -- > Installed"
 else
-    echo -e "${Red}Dnsmasq -- > Not found, installing to you" && sudo apt-get install dnsmasq -y
+    echo -e "${Red}Dnsmasq -- > Not found, installing to you" && sudo apt-get install dnsmasq -y > /dev/null
 fi
-sleep 6
+sleep 1
 if [ -e $nload ]
 then
     echo -e "${Red}Nload -- > Installed"
 else
-    echo -e "${Red}Nload -- > Not found, installing to you" && sudo apt-get install nload -y
+    echo -e "${Red}Nload -- > Not found, installing to you" && sudo apt-get install nload -y > /dev/null
 fi
+sleep 1
 echo "Checking Complete!"
-clear
-sleep 6
 #Fix Problems
 echo -e ${Cyan}
 sudo apt-get -f -y
-clear
 #Install Upgrades, Updates
-sudo apt-get upgrade -y && sudo apt-get upgrade -y
-clear
+sudo apt-get upgrade -y > /dev/null && sudo apt-get upgrade -y > /dev/null
 #Remove tor dirs
 sudo update-rc.d -f tor remove
-clear
 #Kill the tor process
 sudo pkill -x tor
 #Execute Tor
@@ -108,19 +103,17 @@ sudo /usr/sbin/tor
 sudo anonsurf start
 sudo anonsurf myip
 echo -e "${Cyan}AnonSurf Activated!"
-sleep 1
+
 echo -e "${Cyan}AnonSurf Fixed"
-sleep 2.1
 echo -e "${Purple}All the work has done, now go dance with ANONYMOUS!"
-sleep 3.2
-read -r -p "Do you want to stop AnonSurf? [dstat/y] " response
-case "$response" in
-    [yY][eE][sS]|[yY]) 
-        sudo anonsurf stop && echo -e "${Purple}Thanks For Using, Bae."
-        ;;
-    *)
-        sudo nload
-        ;;
-esac
+sleep 1
+echo "Do you want to stop AnonSurf? [dstat/y]"
+read RESPOSTA
+if [ $RESPOSTA == "dstat" ];then
+    sudo nload
+fi
+if [ $RESPOSTA == "y" ];then
+    echo -e "${Red}Bae!" && sudo anonsurf stop
+fi
 
 echo -e "${Purple}.----------------------------------------------."
