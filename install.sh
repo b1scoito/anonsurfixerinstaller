@@ -57,17 +57,16 @@ then
     echo -e "${Red}AnonSurf -- > Installed"
 else
      echo -e "${Red}Tor -- > Not Found, installing to you"
-DISTRO=$( cat /etc/*-release | tr [:upper:] [:lower:] | grep -Poi '(kali|parrot)' | uniq )
-if [ -z $DISTRO ]; then
-    DISTRO='unknown'
+dist=$(tr -s ' \011' '\012' < /etc/issue | head -n 1)
+check_arch=$(uname -m)
+echo "Distribution Name: $dist"
 fi
-if [ "$DISTRO" == "parrot" ];then 
+if [ "$dist" == "Parrot" ];then 
 sudo apt-get install anonsurf -y > /dev/null
-elif [ "$DISTRO" == "kali" ];then
-sudo git clone https://github.com/Und3rf10w/kali-anonsurf
-sudo cd kali-anonsurf/
-sudo chmod +x installer.sh
-sudo ./installer.sh > /dev/null
+elif [ "$dist" == "Kali" ];then
+cd kali-anonsurf
+chmod +x installer.sh
+./installer.sh > /dev/null
 fi
 fi
 sleep 1
@@ -103,7 +102,7 @@ echo "Checking Complete!"
 #Fix Problems
 echo -e ${Cyan}
 #Install Upgrades, Updates
-sudo apt-get upgrade -y > /dev/null && sudo apt-get upgrade -y > /dev/null
+sudo apt-get update -y > /dev/null && sudo apt-get upgrade -y > /dev/null
 #Remove tor dirs
 sudo update-rc.d -f tor remove
 #Kill the tor process
